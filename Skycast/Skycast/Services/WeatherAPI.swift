@@ -10,7 +10,10 @@ import Foundation
 
 struct WeatherAPI {
     static func fetchWeatherData(lat: Double, lon: Double) -> AnyPublisher<Forecast, Error> {
-        let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(API.key)")!
+        guard let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(API.key)") else {
+            print("DEBUG: Invalid weather URL,")
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        }
         
         return URLSession.shared
             .dataTaskPublisher(for: url)
