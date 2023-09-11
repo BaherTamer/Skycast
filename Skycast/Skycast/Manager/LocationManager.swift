@@ -8,20 +8,17 @@
 import CoreLocation
 import Foundation
 
-class LocationManager: NSObject, ObservableObject {
+class LocationManager: ObservableObject {
     
     private let manager = CLLocationManager()
     
     @Published var userLocation: CLLocation?
     @Published var servicesIsDenied: Bool = true
     
-    static let shared = LocationManager ()
-    override init() {
-        super.init()
-        
-        manager.delegate = self
+    static let shared = LocationManager()
+    private init() {
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.startUpdatingLocation()
+        checkLocationAuthorization()
     }
     
     func checkLocationAuthorization() {
@@ -30,6 +27,7 @@ class LocationManager: NSObject, ObservableObject {
         switch manager.authorizationStatus{
             
         case .notDetermined:
+            self.servicesIsDenied = true
             manager.requestWhenInUseAuthorization()
             
         case .denied:
@@ -43,11 +41,5 @@ class LocationManager: NSObject, ObservableObject {
             break
             
         }
-    }
-}
-
-extension LocationManager: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
     }
 }
