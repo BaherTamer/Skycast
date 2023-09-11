@@ -10,6 +10,7 @@ import SwiftUI
 struct ForecastInfoItem: View {
     
     let forecastInfo: ForecastInfo
+    let title: String
     
     var body: some View {
         HStack {
@@ -25,7 +26,7 @@ struct ForecastInfoItem: View {
                 Text(forecastInfo.rawValue.capitalized)
                     .font(.headline)
                 
-                Text("6.69 km/h") // TODO: Update Model
+                Text(title) // TODO: Update Model
                     .font(.subheadline)
             }
         }
@@ -35,6 +36,6 @@ struct ForecastInfoItem: View {
 
 struct ForecastInfoItem_Previews: PreviewProvider {
     static var previews: some View {
-        ForecastInfoItem(forecastInfo: .wind)
+        ForecastInfoItem(forecastInfo: .wind, title: "Wind")
     }
 }
