@@ -32,12 +32,6 @@ struct TodayForecast: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
         .background(.blue.gradient)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("Skycat")
-            }
-        }
     }
     
     private var headerSection: some View {
