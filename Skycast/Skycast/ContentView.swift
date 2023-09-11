@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var city = City(name: "", lat: 0, lon: 0)
     @State private var isShowingCitiesView = false
     
     @ObservedObject private var locationManager = LocationManager.shared
@@ -19,7 +20,9 @@ struct ContentView: View {
             TodayForecast()
                 .navigationBarTitleDisplayMode(.inline)
                 .sheet(isPresented: $isShowingCitiesView) {
-                    CitiesListView()
+                    CitiesListView { city in
+                        self.city = city
+                    }
                 }
                 .toolbar {
                     ToolbarItem(placement: .principal) {

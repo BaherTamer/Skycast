@@ -15,13 +15,16 @@ import Foundation
     
     private var cancellables: Set<AnyCancellable> = []
     
+    init() {
+        self.cities = LocalDataManager.loadCities()
+    }
+    
     func addButtonPressed() {
         CityAPI.fetchCity(for: newCityName)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("DEBUG: City was found.")
                     return
                     
                 case .failure(let error):
@@ -31,9 +34,20 @@ import Foundation
                 if let fetchedCity = cities.first {
                     self?.cities.insert(fetchedCity, at: 0)
                     self?.newCityName = ""
+                    
+                    self?.saveCitiesLocally()
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    func deleteCity(at offsets: IndexSet) {
+        self.cities.remove(atOffsets: offsets)
+        self.saveCitiesLocally()
+    }
+    
+    private func saveCitiesLocally() {
+        LocalDataManager.saveCities(self.cities)
     }
     
 }

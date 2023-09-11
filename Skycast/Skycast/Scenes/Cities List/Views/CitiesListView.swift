@@ -13,6 +13,8 @@ struct CitiesListView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    var completion: (City) -> ()
+    
     var body: some View {
         NavigationView {
             Form {
@@ -37,6 +39,9 @@ struct CitiesListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         viewModel.addButtonPressed()
+                        if let city = viewModel.cities.first {
+                            completion(city)
+                        }
                     }
                 }
             }
@@ -49,6 +54,7 @@ struct CitiesListView: View {
                 ForEach(viewModel.cities, id: \.self) { city in
                     Text(city.name)
                 }
+                .onDelete(perform: viewModel.deleteCity)
             }
         } header: {
             Text("History")
@@ -58,6 +64,6 @@ struct CitiesListView: View {
 
 struct CitiesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CitiesListView()
+        CitiesListView(completion: {_ in})
     }
 }
