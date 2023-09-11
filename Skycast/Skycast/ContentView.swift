@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var locationManager = LocationManager.shared
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            TodayForecast()
+                .onAppear {
+                    locationManager.checkLocationAuthorization()
+                }
+                .sheet(isPresented: $locationManager.servicesIsDenied) {
+                    Text("Hello, world!")
+                }
         }
-        .padding()
     }
 }
 
