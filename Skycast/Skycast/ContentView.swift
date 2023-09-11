@@ -8,18 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @ObservedObject var locationManager = LocationManager.shared
-    
     var body: some View {
         NavigationStack {
             TodayForecast()
-                .onAppear {
-                    locationManager.checkLocationAuthorization()
-                }
-                .sheet(isPresented: $locationManager.servicesIsDenied) {
-                    Text("Hello, world!")
-                }
         }
     }
 }

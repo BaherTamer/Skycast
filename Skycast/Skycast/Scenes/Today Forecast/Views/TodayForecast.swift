@@ -32,6 +32,12 @@ struct TodayForecast: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
         .background(.blue.gradient)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Skycat")
+            }
+        }
     }
     
     private var headerSection: some View {
@@ -73,10 +79,10 @@ struct TodayForecast: View {
     
     private var forecastInfoGrid: some View {
         LazyVGrid(columns: forecastInfoGridColumns) {
-            ForecastInfoItem(forecastInfo: .wind)
-            ForecastInfoItem(forecastInfo: .feelsLike)
-            ForecastInfoItem(forecastInfo: .humidity)
-            ForecastInfoItem(forecastInfo: .pressure)
+            ForecastInfoItem(forecastInfo: .wind, title: "Wind")
+            ForecastInfoItem(forecastInfo: .feelsLike, title: "Feels Like")
+            ForecastInfoItem(forecastInfo: .humidity, title: "Humidity")
+            ForecastInfoItem(forecastInfo: .pressure, title: "Pressure")
         }
     }
     
@@ -93,6 +99,8 @@ struct TodayForecast: View {
 
 struct TodayForecast_Previews: PreviewProvider {
     static var previews: some View {
-        TodayForecast()
+        NavigationView {
+            TodayForecast()
+        }
     }
 }
