@@ -10,14 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var city = City(name: "", lat: 0, lon: 0)
+    @State private var city = City(name: "Add your City", lat: 0, lon: 0)
     @State private var isShowingCitiesView = false
     
     @ObservedObject private var locationManager = LocationManager.shared
     
     var body: some View {
         NavigationStack {
-            TodayForecast()
+            TodayForecast(for: city)
                 .navigationBarTitleDisplayMode(.inline)
                 .sheet(isPresented: $isShowingCitiesView) {
                     CitiesListView { city in
@@ -42,7 +42,7 @@ struct ContentView: View {
         Button {
             isShowingCitiesView = true
         } label: {
-            Text("Cairo")
+            Text(city.name)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .tint(Color(UIColor.systemBackground))

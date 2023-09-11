@@ -38,8 +38,7 @@ struct CitiesListView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-                        viewModel.addButtonPressed()
-                        if let city = viewModel.cities.first {
+                        viewModel.addButtonPressed { city in
                             completion(city)
                         }
                     }

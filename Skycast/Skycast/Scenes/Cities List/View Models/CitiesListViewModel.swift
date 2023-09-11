@@ -19,7 +19,7 @@ import Foundation
         self.cities = LocalDataManager.loadCities()
     }
     
-    func addButtonPressed() {
+    func addButtonPressed(completion: @escaping (City) -> ()) {
         CityAPI.fetchCity(for: newCityName)
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -30,12 +30,13 @@ import Foundation
                 case .failure(let error):
                     print("DEBUG: City was not found,", error)
                 }
-            } receiveValue: { [weak self] cities in
+            } receiveValue: { cities in
                 if let fetchedCity = cities.first {
-                    self?.cities.insert(fetchedCity, at: 0)
-                    self?.newCityName = ""
+                    self.cities.insert(fetchedCity, at: 0)
+                    self.newCityName = ""
+                    self.saveCitiesLocally()
                     
-                    self?.saveCitiesLocally()
+                    completion(fetchedCity)
                 }
             }
             .store(in: &cancellables)
