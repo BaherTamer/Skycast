@@ -13,6 +13,7 @@ class LocationManager: NSObject, ObservableObject {
     private let manager = CLLocationManager()
     
     @Published var userLocation: CLLocation?
+    @Published var servicesIsDenied: Bool = true
     
     static let shared = LocationManager ()
     override init() {
@@ -24,10 +25,15 @@ class LocationManager: NSObject, ObservableObject {
     }
     
     func checkLocationAuthorization() {
+        self.servicesIsDenied = false
+        
         switch manager.authorizationStatus{
             
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
+            
+        case .denied:
+            self.servicesIsDenied = true
             
         case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
@@ -37,10 +43,6 @@ class LocationManager: NSObject, ObservableObject {
             break
             
         }
-    }
-    
-    func isLocationServicesDenied() -> Bool {
-        manager.authorizationStatus == .denied
     }
 }
 
