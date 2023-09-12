@@ -42,7 +42,7 @@ struct TodayForecast: View {
     }
     
     private var headerSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 8) {
             HStack(alignment: .top) {
                 Text(viewModel.temperature)
                     .font(.system(size: 80, design: .rounded))
@@ -59,7 +59,7 @@ struct TodayForecast: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
-            Text("Sunday, 10 Sep 2023 10:15 PM")
+            Text(viewModel.date, formatter: DateFormatter.dateFormatter)
                 .font(.headline)
         }
         .foregroundStyle(.ultraThickMaterial)

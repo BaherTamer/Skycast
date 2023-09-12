@@ -42,6 +42,10 @@ extension TodayForecastViewModel {
         "\(Int(forecast?.current.temp ?? 0))"
     }
     
+    var date: Date {
+        forecast?.current.dt ?? .now
+    }
+    
     var description: String {
         forecast?.current.weather.first?.description.capitalized ?? "Unkown"
     }
