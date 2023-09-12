@@ -47,7 +47,7 @@ extension TodayForecastViewModel {
     }
     
     var description: String {
-        forecast?.current.weather.first?.description.capitalized ?? "Unkown"
+        forecast?.current.weather.first?.description.capitalized ?? "Unknown"
     }
     
     var windSpeed: String {
@@ -68,5 +68,9 @@ extension TodayForecastViewModel {
     
     var hourlyForecast: [Current] {
         forecast?.hourly ?? []
+    }
+    
+    var dailyForecast: [Daily] {
+        forecast?.daily ?? []
     }
 }
