@@ -12,23 +12,36 @@ struct TodayForecast: View {
     @Binding var city: City
     @StateObject private var viewModel = TodayForecastViewModel()
     
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    private var screenWidth: Double {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            return windowScene.screen.bounds.size.width
+        }
+        
+        return 200
+    }
+    
+    private var isScreenPortrait: Bool {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return verticalSizeClass != .compact
+        } else {
+            return horizontalSizeClass == .compact && verticalSizeClass == .regular
+        }
+    }
+    
     var body: some View {
-        VStack {
-            headerSection
-            
-            VStack(spacing: 32) {
-                forecastInfoHeader
-                
-                forecastInfoGrid
-                
-                Divider()
-                
-                hourlyForecastInfo
+        Group {
+            if isScreenPortrait {
+                VStack {
+                    mainView
+                }
+            } else {
+                HStack {
+                    mainView
+                }
             }
-            .padding(.horizontal)
-            .padding(.vertical, 24)
-            .background(.background)
-            .cornerRadius(12)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
@@ -39,6 +52,24 @@ struct TodayForecast: View {
         .onChange(of: city) { newValue in
             viewModel.fetchForecast(for: newValue)
         }
+    }
+
+    @ViewBuilder private var mainView: some View {
+        headerSection
+        Spacer()
+        VStack(spacing: 16) {
+            forecastInfoHeader
+            
+            forecastInfoGrid
+            
+            Divider()
+            
+            hourlyForecastInfo
+        }
+        .padding()
+        .background(.background)
+        .cornerRadius(12)
+        .frame(maxWidth: isScreenPortrait ? .infinity : screenWidth/2)
     }
     
     private var headerSection: some View {
@@ -63,7 +94,7 @@ struct TodayForecast: View {
                 .font(.headline)
         }
         .foregroundStyle(.ultraThickMaterial)
-        .frame(maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
     
     private var forecastInfoHeader: some View {
