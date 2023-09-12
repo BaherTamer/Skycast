@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct HourlyForecastItem: View {
+    
+    var currentHourForcast: Current
+    
     var body: some View {
         VStack(spacing: 8) {
-            Text("Wind")
+            Text(currentHourForcast.dt, formatter: DateFormatter.timeFormatter)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            
             Image(systemName: "wind.circle.fill")
                 .font(.largeTitle)
-            Text("34.5")
+            
+            Text("\(Int(currentHourForcast.temp).description)°")
+                .font(.headline)
         }
         .padding(.horizontal, 8)
     }
 }
 
-struct HourlyForecastItem_Previews: PreviewProvider {
-    static var previews: some View {
-        HourlyForecastItem()
-    }
-}
