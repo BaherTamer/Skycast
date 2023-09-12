@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TodayForecast: View {
     
-    private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
+    @Binding var city: City
+    @StateObject private var viewModel = TodayForecastViewModel()
     
     var body: some View {
         VStack {
@@ -32,15 +33,29 @@ struct TodayForecast: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
         .background(.blue.gradient)
+        .onAppear {
+            viewModel.fetchForecast(for: city)
+        }
+        .onChange(of: city) { newValue in
+            viewModel.fetchForecast(for: newValue)
+        }
     }
     
     private var headerSection: some View {
         VStack(spacing: 16) {
-            Text("34.5°")
-                .font(.system(size: 64, design: .rounded))
-                .fontWeight(.bold)
+            HStack(alignment: .top) {
+                Text(viewModel.temperature)
+                    .font(.system(size: 80, design: .rounded))
+                    .fontWeight(.bold)
+                
+                Text("°")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .offset(x: -8)
+            }
+            .padding(.trailing, -24)
             
-            Text("Broken Clouds")
+            Text(viewModel.description)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
@@ -72,19 +87,19 @@ struct TodayForecast: View {
     }
     
     private var forecastInfoGrid: some View {
-        LazyVGrid(columns: forecastInfoGridColumns) {
-            ForecastInfoItem(forecastInfo: .wind, title: "Wind")
-            ForecastInfoItem(forecastInfo: .feelsLike, title: "Feels Like")
-            ForecastInfoItem(forecastInfo: .humidity, title: "Humidity")
-            ForecastInfoItem(forecastInfo: .pressure, title: "Pressure")
+        LazyVGrid(columns: viewModel.forecastInfoGridColumns) {
+            ForecastInfoItem(forecastInfo: .wind, title: viewModel.windSpeed)
+            ForecastInfoItem(forecastInfo: .feelsLike, title: viewModel.feelsLike)
+            ForecastInfoItem(forecastInfo: .humidity, title: viewModel.humidity)
+            ForecastInfoItem(forecastInfo: .pressure, title: viewModel.pressure)
         }
     }
     
     private var hourlyForecastInfo: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(1...10, id: \.self) { _ in
-                    HourlyForecastItem()
+                ForEach(viewModel.hourlyForecast, id: \.dt) { hour in
+                    HourlyForecastItem(currentHourForcast: hour)
                 }
             }
         }
@@ -94,7 +109,7 @@ struct TodayForecast: View {
 struct TodayForecast_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TodayForecast()
+            TodayForecast(city: .constant(City(name: "Cairo", lat: 30, lon: 30)))
         }
     }
 }
