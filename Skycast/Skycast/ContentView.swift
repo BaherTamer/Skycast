@@ -10,18 +10,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var city = City(name: "Add your City", lat: 0, lon: 0)
-    @State private var isShowingCitiesView = false
-    
+    @StateObject private var viewModel = ContentViewModel()
     @ObservedObject private var locationManager = LocationManager.shared
     
     var body: some View {
         NavigationStack {
-            TodayForecast(city: $city)
+            TodayForecast(city: $viewModel.city)
                 .navigationBarTitleDisplayMode(.inline)
-                .sheet(isPresented: $isShowingCitiesView) {
+                .sheet(isPresented: $viewModel.isShowingCitiesView, onDismiss: {
+                    viewModel.fetchCity(locationManager: locationManager)
+                }) {
                     CitiesListView { city in
-                        self.city = city
+                        viewModel.city = city
                     }
                 }
                 .toolbar {
@@ -29,32 +29,23 @@ struct ContentView: View {
                         cityNameButton
                     }
                 }
-                .onChange(of: locationManager.userLocation) { newValue in
-                    controlCitiesSheet(for: newValue)
-                }
                 .onAppear {
-                    controlCitiesSheet(for: locationManager.userLocation)
+                    viewModel.fetchCity(locationManager: locationManager)
+                }
+                .onChange(of: locationManager.userLocation) { _ in
+                    viewModel.fetchCity(locationManager: locationManager)
                 }
         }
     }
     
     private var cityNameButton: some View {
         Button {
-            isShowingCitiesView = true
+            viewModel.isShowingCitiesView = true
         } label: {
-            Text(city.name)
+            Text(viewModel.city.name)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .tint(Color(UIColor.systemBackground))
-        }
-    }
-    
-    // MARK: - Functions
-    private func controlCitiesSheet(for location: CLLocation?) {
-        if location == nil {
-            isShowingCitiesView = true
-        } else {
-            isShowingCitiesView = false
         }
     }
 }
