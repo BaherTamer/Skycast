@@ -9,21 +9,35 @@ import SwiftUI
 
 struct DailyForecastCardItem: View {
     
+    let forecast: Daily
     private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
+    
+    private var windSpeed: String {
+        "\(forecast.windSpeed) km/h"
+    }
+    
+    private var feelsLike: String {
+        "\(forecast.feelsLike.day)°"
+    }
+    
+    private var humidity: String {
+        "\(forecast.humidity)%"
+    }
+    
+    private var pressure: String {
+        "\(forecast.pressure) hPa"
+    }
     
     var body: some View {
         VStack(spacing: 16) {
             HStack {
-                Image(systemName: "cloud.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
+                ForecastIcon(icon: forecast.weather.first?.icon ?? "10d")
                 
                 VStack(alignment: .leading) {
-                    Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                    Text(forecast.dt, formatter: DateFormatter.dateFormatter)
                         .font(.headline)
                     
-                    Text("Broken Clouds")
+                    Text(forecast.weather.first?.description ?? "Unknown")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -31,8 +45,13 @@ struct DailyForecastCardItem: View {
                 
                 Spacer()
                 
-                Text("35")
-                    .font(.system(.title, design: .rounded, weight: .bold))
+                HStack(alignment: .top) {
+                    Text(Int(forecast.temp.day).description)
+                        .font(.system(.title, design: .rounded, weight: .bold))
+                    
+                    Text("°")
+                        .font(.headline)
+                }
             }
             
             Divider()
@@ -47,16 +66,10 @@ struct DailyForecastCardItem: View {
     
     private var forecastInfoGrid: some View {
         LazyVGrid(columns: forecastInfoGridColumns) {
-            ForecastInfoItem(forecastInfo: .wind, title: "Wind")
-            ForecastInfoItem(forecastInfo: .feelsLike, title: "Feels Like")
-            ForecastInfoItem(forecastInfo: .humidity, title: "Humidity")
-            ForecastInfoItem(forecastInfo: .pressure, title: "Pressure")
+            ForecastInfoItem(forecastInfo: .wind, title: windSpeed)
+            ForecastInfoItem(forecastInfo: .feelsLike, title: feelsLike)
+            ForecastInfoItem(forecastInfo: .humidity, title: humidity)
+            ForecastInfoItem(forecastInfo: .pressure, title: pressure)
         }
-    }
-}
-
-struct DailyForecastCardItem_Previews: PreviewProvider {
-    static var previews: some View {
-        DailyForecastCardItem()
     }
 }
