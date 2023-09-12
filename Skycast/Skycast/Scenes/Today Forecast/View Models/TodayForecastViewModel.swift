@@ -31,6 +31,10 @@ extension TodayForecastViewModel {
         forecast?.current.dt ?? .now
     }
     
+    var weatherId: Int? {
+        forecast?.current.weather.first?.id
+    }
+    
     var description: String {
         forecast?.current.weather.first?.description.capitalized ?? "Unknown"
     }

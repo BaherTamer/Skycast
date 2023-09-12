@@ -45,7 +45,7 @@ struct TodayForecast: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
-        .background(.blue.gradient)
+        .background(Color.forecastBackground(weatherId: viewModel.weatherId).gradient)
         .onAppear {
             viewModel.fetchForecast(for: city)
         }
