@@ -12,26 +12,12 @@ import SwiftUI
     
     @Published private var forecast: Forecast?
     
-    private var cancellables: Set<AnyCancellable> = []
     let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
     
     func fetchForecast(for city: City) {
-        WeatherAPI.fetchWeatherData(lat: city.lat, lon: city.lon)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                    
-                case .finished:
-                    return
-                    
-                case .failure(let error):
-                    print("DEBUG: Failed to fetch weather,", error)
-                    
-                }
-            } receiveValue: { [weak self] fetchedForecast in
-                self?.forecast = fetchedForecast
-            }
-            .store(in: &cancellables)
+        ForecastAPIManager.fetchForecast(for: city) { [weak self] fetchedForecast in
+            self?.forecast = fetchedForecast
+        }
     }
 }
 
