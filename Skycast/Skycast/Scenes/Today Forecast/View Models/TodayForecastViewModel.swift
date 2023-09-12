@@ -22,7 +22,6 @@ import SwiftUI
                 switch completion {
                     
                 case .finished:
-                    print("DEBUG: Weather data was fetched successfully.")
                     return
                     
                 case .failure(let error):
