@@ -74,11 +74,11 @@ struct TodayForecast: View {
             
             Spacer()
             
-            Button {
-                // TODO: Navigation to daily forecast
+            NavigationLink {
+                DailyForecast(dailyForecast: viewModel.dailyForecast)
             } label: {
                 HStack {
-                    Text("5-Days Forecast")
+                    Text("Daily Forecast")
                     Image(systemName: "chevron.right")
                 }
                 .font(.headline)
