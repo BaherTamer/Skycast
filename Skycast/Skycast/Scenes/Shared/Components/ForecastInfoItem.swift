@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ForecastInfoItem: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let forecastInfo: ForecastInfo
     let title: String
     
@@ -18,7 +20,7 @@ struct ForecastInfoItem: View {
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(8)
-                .background(Color(UIColor.systemGray6))
+                .background(colorScheme == .dark ? Color(UIColor.systemGray5) : Color(UIColor.systemGray6))
                 .foregroundStyle(forecastInfo.color)
                 .clipShape(Circle())
             

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DailyForecastCardItem: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let forecast: Daily
     private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -59,7 +61,7 @@ struct DailyForecastCardItem: View {
             forecastInfoGrid
         }
         .padding()
-        .background(.background)
+        .background(colorScheme == .dark ? Color(UIColor.systemGray6) : .white)
         .cornerRadius(12)
         .padding()
     }
