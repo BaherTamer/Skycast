@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            TodayForecast(for: city)
+            TodayForecast(city: $city)
                 .navigationBarTitleDisplayMode(.inline)
                 .sheet(isPresented: $isShowingCitiesView) {
                     CitiesListView { city in
