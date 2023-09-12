@@ -40,6 +40,7 @@ struct CitiesListView: View {
                     Button("Add") {
                         viewModel.addButtonPressed { city in
                             completion(city)
+                            dismiss()
                         }
                     }
                 }
@@ -51,12 +52,28 @@ struct CitiesListView: View {
         Section {
             List {
                 ForEach(viewModel.cities, id: \.self) { city in
-                    Text(city.name)
+                    histroyRow(city: city)
                 }
                 .onDelete(perform: viewModel.deleteCity)
             }
         } header: {
             Text("History")
+        }
+    }
+    
+    private func histroyRow(city: City) -> some View {
+        HStack {
+            Button(city.name) {
+                viewModel.updateCity(city)
+                completion(city)
+                dismiss()
+            }
+            .tint(.primary)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundStyle(Color(UIColor.systemGray2))
         }
     }
 }
