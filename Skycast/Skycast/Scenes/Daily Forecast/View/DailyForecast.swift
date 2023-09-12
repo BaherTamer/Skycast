@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DailyForecast: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let dailyForecast: [Daily]
     
     var body: some View {
@@ -18,7 +20,7 @@ struct DailyForecast: View {
             }
         }
         .navigationTitle("Daily Forecast")
-        .background(Color(UIColor.systemGray6))
+        .background(colorScheme == .dark ? Color(UIColor.systemGray5) : Color(UIColor.systemGray6))
     }
 }
 

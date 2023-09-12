@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TodayForecast: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @Binding var city: City
     @StateObject private var viewModel = TodayForecastViewModel()
     
@@ -45,6 +47,7 @@ struct TodayForecast: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .padding()
+        .background(.primary.opacity(0.1))
         .background(Color.forecastBackground(weatherId: viewModel.weatherId).gradient)
         .onAppear {
             viewModel.fetchForecast(for: city)
@@ -67,7 +70,7 @@ struct TodayForecast: View {
             hourlyForecastInfo
         }
         .padding()
-        .background(.background)
+        .background(colorScheme == .dark ? Color(UIColor.systemGray6) : .white)
         .cornerRadius(12)
         .frame(maxWidth: isScreenPortrait ? .infinity : screenWidth/2)
     }
