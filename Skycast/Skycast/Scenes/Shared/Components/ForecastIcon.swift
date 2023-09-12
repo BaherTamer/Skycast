@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ForecastIcon: View {
     let icon: String
-    let frameSize: CGFloat
     
     private var iconURL: URL? {
         URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")
@@ -34,6 +33,7 @@ struct ForecastIcon: View {
                 fatalError()
             }
         }
-        .frame(width: frameSize, height: frameSize)
+        .frame(width: 50, height: 50)
+        .shadow(color: .secondary.opacity(0.75), radius: 1)
     }
 }

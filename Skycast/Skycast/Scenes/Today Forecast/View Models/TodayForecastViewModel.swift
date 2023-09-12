@@ -22,7 +22,6 @@ import SwiftUI
                 switch completion {
                     
                 case .finished:
-                    print("DEBUG: Weather data was fetched successfully.")
                     return
                     
                 case .failure(let error):
@@ -47,7 +46,7 @@ extension TodayForecastViewModel {
     }
     
     var description: String {
-        forecast?.current.weather.first?.description.capitalized ?? "Unkown"
+        forecast?.current.weather.first?.description.capitalized ?? "Unknown"
     }
     
     var windSpeed: String {
@@ -68,5 +67,9 @@ extension TodayForecastViewModel {
     
     var hourlyForecast: [Current] {
         forecast?.hourly ?? []
+    }
+    
+    var dailyForecast: [Daily] {
+        forecast?.daily ?? []
     }
 }

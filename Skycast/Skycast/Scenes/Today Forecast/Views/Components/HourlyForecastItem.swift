@@ -17,8 +17,7 @@ struct HourlyForecastItem: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
-            ForecastIcon(icon: currentHourForcast.weather.first?.icon ?? "10d", frameSize: 60)
-                .shadow(color: .secondary.opacity(0.75), radius: 1)
+            ForecastIcon(icon: currentHourForcast.weather.first?.icon ?? "10d")
             
             Text("\(Int(currentHourForcast.temp).description)°")
                 .font(.headline)
