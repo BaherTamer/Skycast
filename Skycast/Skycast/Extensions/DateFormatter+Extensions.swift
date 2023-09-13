@@ -11,8 +11,8 @@ extension DateFormatter {
     static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "h a"
-        formatter.amSymbol = "AM"
-        formatter.pmSymbol = "PM"
+        formatter.amSymbol = String(localized: "am")
+        formatter.pmSymbol = String(localized: "pm")
         
         return formatter
     }

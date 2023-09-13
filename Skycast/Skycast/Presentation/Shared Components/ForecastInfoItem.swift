@@ -25,7 +25,7 @@ struct ForecastInfoItem: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(forecastInfo.rawValue.capitalized)
+                Text(forecastInfo.localizedText)
                     .font(.headline)
                 
                 Text(title) // TODO: Update Model

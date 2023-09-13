@@ -11,6 +11,7 @@ struct CitiesListView: View {
     
     @StateObject private var viewModel = CitiesListViewModel()
     
+    @Environment(\.layoutDirection) var layoutDirection
     @Environment(\.dismiss) var dismiss
     
     var completion: (City) -> ()
@@ -19,9 +20,9 @@ struct CitiesListView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("City name", text: $viewModel.newCityName)
+                    TextField(String(localized: "cityName"), text: $viewModel.newCityName)
                 } header: {
-                    Text("Add new city")
+                    Text(String(localized: "addNewCity"))
                 }
                 
                 if !viewModel.cities.isEmpty {
@@ -31,18 +32,19 @@ struct CitiesListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Dismiss") {
+                    Button(String(localized: "dismiss")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
+                    Button(String(localized: "add")) {
                         viewModel.addButtonPressed { city in
                             completion(city)
                             dismiss()
                         }
                     }
+                    .font(.headline)
                 }
             }
         }
@@ -57,13 +59,13 @@ struct CitiesListView: View {
                 .onDelete(perform: viewModel.deleteCity)
             }
         } header: {
-            Text("History")
+            Text(String(localized: "history"))
         }
     }
     
     private func histroyRow(city: City) -> some View {
         HStack {
-            Button(city.name) {
+            Button(viewModel.getCityName(city)) {
                 viewModel.updateCity(city)
                 completion(city)
                 dismiss()
@@ -72,7 +74,7 @@ struct CitiesListView: View {
             
             Spacer()
             
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.\(layoutDirection == .leftToRight ? "right" : "left")")
                 .foregroundStyle(Color(UIColor.systemGray2))
         }
     }

@@ -15,7 +15,7 @@ struct DailyForecastCardItem: View {
     private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
     
     private var windSpeed: String {
-        "\(forecast.windSpeed) km/h"
+        "\(forecast.windSpeed) \(String(localized: "km/h"))"
     }
     
     private var feelsLike: String {
@@ -27,7 +27,7 @@ struct DailyForecastCardItem: View {
     }
     
     private var pressure: String {
-        "\(forecast.pressure) hPa"
+        "\(forecast.pressure) \(String(localized: "hpa"))"
     }
     
     var body: some View {
@@ -54,6 +54,7 @@ struct DailyForecastCardItem: View {
                     Text("°")
                         .font(.headline)
                 }
+                .environment(\.layoutDirection, .leftToRight)
             }
             
             Divider()

@@ -19,7 +19,7 @@ struct DailyForecast: View {
                 DailyForecastCardItem(forecast: forecast)
             }
         }
-        .navigationTitle("Daily Forecast")
+        .navigationTitle(String(localized: "dailyForecast"))
         .background(colorScheme == .dark ? Color(UIColor.systemGray5) : Color(UIColor.systemGray6))
     }
 }

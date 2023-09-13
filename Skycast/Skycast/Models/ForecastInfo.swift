@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum ForecastInfo: String {
+enum ForecastInfo {
     case wind
-    case feelsLike = "Feels Like"
+    case feelsLike
     case humidity
     case pressure
 }
@@ -25,6 +25,21 @@ extension ForecastInfo {
             return "humidity"
         case .pressure:
             return "gauge.medium"
+        }
+    }
+}
+
+extension ForecastInfo {
+    var localizedText: String {
+        switch self {
+        case .wind:
+            return String(localized: "wind")
+        case .feelsLike:
+            return String(localized: "feelsLike")
+        case .humidity:
+            return String(localized: "humidity")
+        case .pressure:
+            return String(localized: "pressure")
         }
     }
 }

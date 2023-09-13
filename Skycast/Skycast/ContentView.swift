@@ -49,7 +49,7 @@ struct ContentView: View {
         Button {
             viewModel.isShowingCitiesView = true
         } label: {
-            Text(viewModel.city.name)
+            Text(viewModel.cityName)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .tint(Color(UIColor.systemBackground))

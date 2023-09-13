@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Skycast
+
+  Created by Baher Tamer on 13/09/2023.
+  
+*/
+
+"today" = "Today";
+"dailyForecast" = "Daily Forecast";
+"wind" = "Wind";
+"feelsLike" = "Feels Like";
+"humidity" = "Humidity";
+"pressure" = "Pressure";
+
+"am" = "AM";
+"pm" = "PM";
+"km/h" = "km/h";
+"hpa" = "hPa";
+
+"settings" = "Settings";
+"appearance" = "Appearance";
+"darkMode" = "Dark Mode";
+"automatic" = "Automatic";
+"light" = "Light";
+"dark" = "Dark";
+
+"add" = "Add";
+"dismiss" = "Dismiss";
+"addNewCity" = "Add New City";
+"cityName" = "City Name";
+"history" = "History";
