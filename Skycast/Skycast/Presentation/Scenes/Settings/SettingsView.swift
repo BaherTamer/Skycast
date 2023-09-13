@@ -16,7 +16,7 @@ struct SettingsView: View {
             Form {
                 appearanceSection
             }
-            .navigationTitle("Settings")
+            .navigationTitle(String(localized: "settings"))
         }
     }
     
@@ -24,17 +24,17 @@ struct SettingsView: View {
         Section {
             colorSchemePicker
         } header: {
-            Text("Appearance")
+            Text(String(localized: "appearance"))
         }
     }
     
     private var colorSchemePicker: some View {
         Picker(selection: colorSchemeManager.$schemeType) {
-                Text("Light").tag(SchemeType.light)
-                Text("Dark").tag(SchemeType.dark)
-                Text("System").tag(SchemeType.unspecified)
+                Text(String(localized: "light")).tag(SchemeType.light)
+                Text(String(localized: "dark")).tag(SchemeType.dark)
+                Text(String(localized: "automatic")).tag(SchemeType.unspecified)
             } label: {
-                SettingsRowIcon(icon: "circle.lefthalf.filled", text: "Dark Mode", color: .gray)
+                SettingsRowIcon(icon: "circle.lefthalf.filled", text: String(localized: "darkMode"), color: .gray)
             }
         }
 }

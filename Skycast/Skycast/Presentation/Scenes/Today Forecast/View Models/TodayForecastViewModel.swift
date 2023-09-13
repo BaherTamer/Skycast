@@ -40,7 +40,7 @@ extension TodayForecastViewModel {
     }
     
     var windSpeed: String {
-        "\(forecast?.current.windSpeed ?? 0) km/h"
+        "\(forecast?.current.windSpeed ?? 0) \(String(localized: "km/h"))"
     }
     
     var feelsLike: String {
@@ -52,7 +52,7 @@ extension TodayForecastViewModel {
     }
     
     var pressure: String {
-        "\(forecast?.current.pressure ?? 0) hPa"
+        "\(forecast?.current.pressure ?? 0) \(String(localized: "hpa"))"
     }
     
     var hourlyForecast: [Current] {

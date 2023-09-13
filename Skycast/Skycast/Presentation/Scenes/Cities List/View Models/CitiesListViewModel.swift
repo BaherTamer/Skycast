@@ -54,6 +54,11 @@ import Foundation
         self.saveCitiesLocally()
     }
     
+    func getCityName(_ city: City) -> String {
+        let language = SkycastLocal.language
+        return city.localNames?[language] ?? ""
+    }
+    
     private func saveCitiesLocally() {
         LocalDataManager.saveCities(self.cities)
     }

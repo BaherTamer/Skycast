@@ -10,6 +10,7 @@ import SwiftUI
 struct TodayForecast: View {
     
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.layoutDirection) var layoutDirection
     
     @Binding var city: City
     @StateObject private var viewModel = TodayForecastViewModel()
@@ -80,6 +81,7 @@ struct TodayForecast: View {
                     .offset(x: -8)
             }
             .padding(.trailing, -24)
+            .environment(\.layoutDirection, .leftToRight)
             
             Text(viewModel.description)
                 .font(.largeTitle)
@@ -94,7 +96,7 @@ struct TodayForecast: View {
     
     private var forecastInfoHeader: some View {
         HStack {
-            Text("Today's")
+            Text(String(localized: "today"))
                 .font(.title3)
                 .fontWeight(.semibold)
             
@@ -104,8 +106,8 @@ struct TodayForecast: View {
                 DailyForecast(dailyForecast: viewModel.dailyForecast)
             } label: {
                 HStack {
-                    Text("Daily Forecast")
-                    Image(systemName: "chevron.right")
+                    Text(String(localized: "dailyForecast"))
+                    Image(systemName: "chevron.\(layoutDirection == .leftToRight ? "right" : "left")")
                 }
                 .font(.headline)
             }
@@ -136,6 +138,7 @@ struct TodayForecast_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TodayForecast(city: .constant(.tempCity))
+                .environment(\.locale, .init(identifier: "ar"))
         }
     }
 }

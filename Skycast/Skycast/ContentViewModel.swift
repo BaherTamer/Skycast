@@ -9,10 +9,16 @@ import SwiftUI
 
 @MainActor final class ContentViewModel: ObservableObject {
     
-    @Published var city: City = .tempCity
+    @Published var city: City = .tempCity {
+        didSet {
+            self.updateCityName()
+        }
+    }
     
     @Published var isShowingCitiesView = false
     @Published var isShowingSettingsView = false
+    
+    var cityName: String = ""
     
     func fetchCity(locationManager: LocationManager) {
         let cities = LocalDataManager.loadCities()
@@ -46,4 +52,8 @@ import SwiftUI
         self.isShowingCitiesView = true
     }
     
+    private func updateCityName() {
+        let language = SkycastLocal.language
+        self.cityName = self.city.localNames?[language] ?? ""
+    }
 }
