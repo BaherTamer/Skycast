@@ -5,3 +5,28 @@
   Created by Baher Tamer on 13/09/2023.
   
 */
+
+"today" = "اليوم";
+"dailyForecast" = "التوقعات اليومية";
+"wind" = "الرياح";
+"feelsLike" = "تشعر به";
+"humidity" = "الرطوبة";
+"pressure" = "الضغط";
+
+"am" = "ص";
+"pm" = "م";
+"km/h" = "كم/س";
+"hpa" = "م.بار";
+
+"settings" = "الإعدادات";
+"appearance" = "المظهر";
+"darkMode" = "الوضع الداكن";
+"automatic" = "تلقائي";
+"light" = "فاتح";
+"dark" = "داكن";
+
+"add" = "إضافة";
+"dismiss" = "إلغاء";
+"addNewCity" = "إضافة مدينة جديدة";
+"cityName" = "اسم المدينة";
+"history" = "السجل";
