@@ -135,7 +135,7 @@ struct TodayForecast: View {
 struct TodayForecast_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TodayForecast(city: .constant(City(name: "Cairo", lat: 30, lon: 30)))
+            TodayForecast(city: .constant(.tempCity))
         }
     }
 }

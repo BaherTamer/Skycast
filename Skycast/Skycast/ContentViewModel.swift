@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor final class ContentViewModel: ObservableObject {
     
-    @Published var city: City = City(name: "Add your city", lat: 0, lon: 0)
+    @Published var city: City = .tempCity
     
     @Published var isShowingCitiesView = false
     @Published var isShowingSettingsView = false
@@ -28,7 +28,10 @@ import SwiftUI
             coordinate.lat = userLocation.coordinate.latitude
             coordinate.lon = userLocation.coordinate.longitude
             
-            self.city = City(name: "Current Location", lat: coordinate.lat, lon: coordinate.lon)
+            self.city = City(name: "Current Location", localNames: [
+                "ar": "الموقع الحالي",
+                "en": "Current Location"
+            ], lat: coordinate.lat, lon: coordinate.lon, country: nil, state: nil)
             
             self.isShowingCitiesView = false
             return
@@ -39,7 +42,7 @@ import SwiftUI
             return
         }
         
-        self.city = City(name: "Add your city", lat: 0, lon: 0)
+        self.city = .tempCity
         self.isShowingCitiesView = true
     }
     
