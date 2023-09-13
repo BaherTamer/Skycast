@@ -24,7 +24,14 @@ struct ContentView: View {
                         viewModel.city = city
                     }
                 }
+                .sheet(isPresented: $viewModel.isShowingSettingsView) {
+                    SettingsView()
+                }
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        settingsButton
+                    }
+                    
                     ToolbarItem(placement: .principal) {
                         cityNameButton
                     }
@@ -45,6 +52,16 @@ struct ContentView: View {
             Text(viewModel.city.name)
                 .font(.title3)
                 .fontWeight(.semibold)
+                .tint(Color(UIColor.systemBackground))
+        }
+    }
+    
+    private var settingsButton: some View {
+        Button {
+            viewModel.isShowingSettingsView = true
+        } label: {
+            Image(systemName: "gear")
+                .font(.headline)
                 .tint(Color(UIColor.systemBackground))
         }
     }
