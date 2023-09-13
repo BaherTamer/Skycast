@@ -10,7 +10,9 @@ import SwiftUI
 @MainActor final class ContentViewModel: ObservableObject {
     
     @Published var city: City = City(name: "Add your city", lat: 0, lon: 0)
+    
     @Published var isShowingCitiesView = false
+    @Published var isShowingSettingsView = false
     
     func fetchCity(locationManager: LocationManager) {
         let cities = LocalDataManager.loadCities()
