@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var networkManager: NetworkManager
+    
     @StateObject private var viewModel = ContentViewModel()
     @ObservedObject private var locationManager = LocationManager.shared
     
@@ -17,6 +19,14 @@ struct ContentView: View {
         NavigationStack {
             TodayForecast(city: $viewModel.city)
                 .navigationBarTitleDisplayMode(.inline)
+                // MARK: Alerts
+                .alert(viewModel.networkAlertTitle, isPresented: $viewModel.isShowingNetworkAlert, actions: {
+                    networkTryAgainButton
+                }, message: {
+                    Text(viewModel.networkAlertMessage)
+                })
+            
+                // MARK: Sheets
                 .sheet(isPresented: $viewModel.isShowingCitiesView, onDismiss: {
                     viewModel.fetchCity(locationManager: locationManager)
                 }) {
@@ -27,6 +37,8 @@ struct ContentView: View {
                 .sheet(isPresented: $viewModel.isShowingSettingsView) {
                     SettingsView()
                 }
+            
+                // MARK: Toolbar
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         settingsButton
@@ -36,11 +48,16 @@ struct ContentView: View {
                         cityNameButton
                     }
                 }
+            
+                // MARK: Configurations
                 .onAppear {
                     viewModel.fetchCity(locationManager: locationManager)
                 }
                 .onChange(of: locationManager.userLocation) { _ in
                     viewModel.fetchCity(locationManager: locationManager)
+                }
+                .onChange(of: networkManager.isConnected) { connection in
+                    viewModel.isShowingNetworkAlert = connection == false
                 }
         }
     }
@@ -65,11 +82,18 @@ struct ContentView: View {
                 .tint(Color(UIColor.systemBackground))
         }
     }
+    
+    private var networkTryAgainButton: some View {
+        Button("Try again") {
+            viewModel.fetchCity(locationManager: locationManager)
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(NetworkManager())
             .environmentObject(LocationManager.shared)
     }
 }

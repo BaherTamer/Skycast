@@ -9,16 +9,22 @@ import SwiftUI
 
 @MainActor final class ContentViewModel: ObservableObject {
     
+    // MARK: City Variables
+    var cityName: String = ""
     @Published var city: City = .tempCity {
         didSet {
             self.updateCityName()
         }
     }
     
+    // MARK: Sheets Variables
     @Published var isShowingCitiesView = false
     @Published var isShowingSettingsView = false
     
-    var cityName: String = ""
+    // MARK: Network Alert Variables
+    @Published var isShowingNetworkAlert = false
+    let networkAlertTitle = "Network error"
+    let networkAlertMessage = "Looks like we’re having some trouble connecting to our servers. No worries, let’s check your internet connection and try again"
     
     func fetchCity(locationManager: LocationManager) {
         let cities = LocalDataManager.loadCities()
