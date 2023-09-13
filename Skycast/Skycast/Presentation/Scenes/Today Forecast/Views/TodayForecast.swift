@@ -17,14 +17,6 @@ struct TodayForecast: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
-    private var screenWidth: Double {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            return windowScene.screen.bounds.size.width
-        }
-        
-        return 200
-    }
-    
     private var isScreenPortrait: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return verticalSizeClass != .compact
@@ -72,7 +64,7 @@ struct TodayForecast: View {
         .padding()
         .background(colorScheme == .dark ? Color(UIColor.systemGray6) : .white)
         .cornerRadius(12)
-        .frame(maxWidth: isScreenPortrait ? .infinity : screenWidth/2)
+        .frame(maxWidth: isScreenPortrait ? .infinity : UIScreen.screenWidth/2)
     }
     
     private var headerSection: some View {
