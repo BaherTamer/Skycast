@@ -14,9 +14,12 @@ struct SkycastApp: App {
     @StateObject private var colorSchemeManager = ColorSchemeManager()
     @AppStorage("SchemeType") private var schemeType: SchemeType = .unspecified
     
+    @StateObject var networkManager = NetworkManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(networkManager)
             
                 // Dark Mode Configurations
                 .environmentObject(colorSchemeManager)
