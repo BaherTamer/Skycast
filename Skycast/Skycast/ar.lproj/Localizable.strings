@@ -19,6 +19,10 @@
 "hpa" = "م.بار";
 
 "settings" = "الإعدادات";
+"general" = "عام";
+"temperatureDegree" = "درجة الحرارة";
+"celsius" = "مئوية";
+"fahrenheit" = "فيرنهايت";
 "appearance" = "المظهر";
 "darkMode" = "الوضع الداكن";
 "automatic" = "تلقائي";

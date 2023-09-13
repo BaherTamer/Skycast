@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HourlyForecastItem: View {
     
+    @EnvironmentObject var temperatureManager: TemperatureManager
+    
     var currentHourForcast: Current
     
     var body: some View {
@@ -19,7 +21,7 @@ struct HourlyForecastItem: View {
             
             ForecastIcon(icon: currentHourForcast.weather.first?.icon ?? "10d")
             
-            Text("\(Int(currentHourForcast.temp).description)°")
+            Text("\(Int(temperatureManager.getTemperature(currentHourForcast.temp)).description)°")
                 .font(.headline)
         }
         .padding(.horizontal, 8)

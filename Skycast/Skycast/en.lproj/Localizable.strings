@@ -19,6 +19,10 @@
 "hpa" = "hPa";
 
 "settings" = "Settings";
+"general" = "General";
+"temperatureDegree" = "Temp. Degree";
+"celsius" = "Celsius";
+"fahrenheit" = "Fahrenheit";
 "appearance" = "Appearance";
 "darkMode" = "Dark Mode";
 "automatic" = "Automatic";

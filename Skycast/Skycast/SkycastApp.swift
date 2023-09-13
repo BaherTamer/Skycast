@@ -10,18 +10,27 @@ import SwiftUI
 @main
 struct SkycastApp: App {
     
-    // MARK: Dark Mode Variables
+    // MARK: Dark Mode Configurations
     @StateObject private var colorSchemeManager = ColorSchemeManager()
     @AppStorage("SchemeType") private var schemeType: SchemeType = .unspecified
     
+    // MARK: Temperature Degree Configurations
+    @StateObject private var temperatureManager = TemperatureManager()
+    
+    // MARK: Network Configurations
     @StateObject var networkManager = NetworkManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                
+                // Temperature Manager
+                .environmentObject(temperatureManager)
+            
+                // Network Manager
                 .environmentObject(networkManager)
             
-                // Dark Mode Configurations
+                // Color Scheme Manager
                 .environmentObject(colorSchemeManager)
                 .onAppear {
                     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

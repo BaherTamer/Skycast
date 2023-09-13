@@ -12,11 +12,12 @@ struct TodayForecast: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.layoutDirection) var layoutDirection
     
-    @Binding var city: City
-    @StateObject private var viewModel = TodayForecastViewModel()
-    
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    @Binding var city: City
+    @StateObject private var viewModel = TodayForecastViewModel()
+    @EnvironmentObject var temperatureManager: TemperatureManager
     
     private var isScreenPortrait: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -71,7 +72,7 @@ struct TodayForecast: View {
     private var headerSection: some View {
         VStack(spacing: 8) {
             HStack(alignment: .top) {
-                Text(viewModel.temperature)
+                Text(temperatureManager.getTemperature(viewModel.temperature).description)
                     .font(.system(size: 80, design: .rounded))
                     .fontWeight(.bold)
                 
@@ -138,6 +139,7 @@ struct TodayForecast_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TodayForecast(city: .constant(.tempCity))
+                .environmentObject(TemperatureManager())
                 .environment(\.locale, .init(identifier: "ar"))
         }
     }

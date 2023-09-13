@@ -10,13 +10,32 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    @EnvironmentObject var temperatureManager: TemperatureManager
     
     var body: some View {
         NavigationStack {
             Form {
+                generalSection
                 appearanceSection
             }
             .navigationTitle(String(localized: "settings"))
+        }
+    }
+    
+    private var generalSection: some View {
+        Section {
+            temperatureDegreePicker
+        } header: {
+            Text(String(localized: "general"))
+        }
+    }
+    
+    private var temperatureDegreePicker: some View {
+        Picker(selection: temperatureManager.$degreeType) {
+            Text(String(localized: "celsius")).tag(DegreeType.celsius)
+            Text(String(localized: "fahrenheit")).tag(DegreeType.fahrenheit)
+        } label: {
+            SettingsRowIcon(icon: "thermometer.medium", text: String(localized: "temperatureDegree"), color: .red)
         }
     }
     
@@ -42,5 +61,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(TemperatureManager())
+            .environmentObject(ColorSchemeManager())
     }
 }
