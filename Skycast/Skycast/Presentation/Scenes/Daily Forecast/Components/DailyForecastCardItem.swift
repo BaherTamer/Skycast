@@ -11,8 +11,15 @@ struct DailyForecastCardItem: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    @EnvironmentObject var temperatureManager: TemperatureManager
+    
     let forecast: Daily
+    
     private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
+    
+    private var temperature: String {
+        temperatureManager.getTemperature(forecast.temp.day).description
+    }
     
     private var windSpeed: String {
         "\(forecast.windSpeed) \(String(localized: "km/h"))"
@@ -48,7 +55,7 @@ struct DailyForecastCardItem: View {
                 Spacer()
                 
                 HStack(alignment: .top) {
-                    Text(Int(forecast.temp.day).description)
+                    Text(temperature)
                         .font(.system(.title, design: .rounded, weight: .bold))
                     
                     Text("°")

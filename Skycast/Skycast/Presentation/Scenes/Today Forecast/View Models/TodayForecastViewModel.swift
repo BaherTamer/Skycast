@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor final class TodayForecastViewModel: ObservableObject {
     
-    @Published private var forecast: Forecast?
+    @Published private(set) var forecast: Forecast?
     
     let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -23,8 +23,8 @@ import SwiftUI
 
 // MARK: - Data Formatter
 extension TodayForecastViewModel {
-    var temperature: String {
-        "\(Int(forecast?.current.temp ?? 0))"
+    var temperature: Double {
+        forecast?.current.temp ?? 0
     }
     
     var date: Date {
