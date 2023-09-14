@@ -25,6 +25,7 @@ struct SettingsView: View {
     private var generalSection: some View {
         Section {
             temperatureDegreePicker
+            notificationSettings
         } header: {
             Text(String(localized: "general"))
         }
@@ -35,8 +36,17 @@ struct SettingsView: View {
             Text(String(localized: "celsius")).tag(DegreeType.celsius)
             Text(String(localized: "fahrenheit")).tag(DegreeType.fahrenheit)
         } label: {
-            SettingsRowIcon(icon: "thermometer.medium", text: String(localized: "temperatureDegree"), color: .red)
+            SettingsRowIcon(icon: "thermometer.medium", text: String(localized: "temperatureDegree"), color: .orange)
         }
+    }
+    
+    private var notificationSettings: some View {
+        NavigationLink {
+            NotificationsSettings()
+        } label: {
+            SettingsRowIcon(icon: "bell.fill", text: String(localized: "notifications"), color: .red)
+        }
+
     }
     
     private var appearanceSection: some View {
