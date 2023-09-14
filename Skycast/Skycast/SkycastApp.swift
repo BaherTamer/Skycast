@@ -20,10 +20,16 @@ struct SkycastApp: App {
     // MARK: Network Configurations
     @StateObject var networkManager = NetworkManager()
     
+    // MARK: Notification Configurations
+    @StateObject var localNotificationManager = LocalNotificationManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 
+                // Local Notification Manager
+                .environmentObject(localNotificationManager)
+            
                 // Temperature Manager
                 .environmentObject(temperatureManager)
             
