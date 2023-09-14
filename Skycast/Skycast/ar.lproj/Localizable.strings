@@ -20,10 +20,16 @@
 
 "settings" = "الإعدادات";
 "general" = "عام";
+"appearance" = "المظهر";
+
 "temperatureDegree" = "درجة الحرارة";
 "celsius" = "مئوية";
 "fahrenheit" = "فيرنهايت";
-"appearance" = "المظهر";
+
+"notifications" = "الإشعارات";
+"dailyReminder" = "التذكير اليومي";
+"allowNotifications" = "السماح بالإشعارات";
+
 "darkMode" = "الوضع الداكن";
 "automatic" = "تلقائي";
 "light" = "فاتح";

@@ -20,10 +20,16 @@
 
 "settings" = "Settings";
 "general" = "General";
+"appearance" = "Appearance";
+
 "temperatureDegree" = "Temp. Degree";
 "celsius" = "Celsius";
 "fahrenheit" = "Fahrenheit";
-"appearance" = "Appearance";
+
+"notifications" = "Notifications";
+"dailyReminder" = "Daily Reminder";
+"allowNotifications" = "Allow notifications";
+
 "darkMode" = "Dark Mode";
 "automatic" = "Automatic";
 "light" = "Light";
