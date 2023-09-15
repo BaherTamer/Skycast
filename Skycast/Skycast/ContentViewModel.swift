@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor final class ContentViewModel: ObservableObject {
     
     // MARK: City Variables
-    var cityName: String = ""
+    var cityName: String = "" // User for navigation bar title
     @Published var city: City = .tempCity {
         didSet {
             self.updateCityName()
@@ -26,6 +26,9 @@ import SwiftUI
     let networkAlertTitle = "Network error"
     let networkAlertMessage = "Looks like we’re having some trouble connecting to our servers. No worries, let’s check your internet connection and try again"
     
+    // The function checks if there are cities are saved locally it fetch them if not...
+    // The function checks if location services is allowed it fetch current location if not...
+    // It shows add city sheet that dismissed only when the user add a city
     func fetchCity(locationManager: LocationManager) {
         let cities = LocalDataManager.loadCities()
         

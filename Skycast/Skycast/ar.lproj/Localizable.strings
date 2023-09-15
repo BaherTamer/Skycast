@@ -6,6 +6,7 @@
   
 */
 
+// MARK: Today Forecast View
 "today" = "اليوم";
 "dailyForecast" = "التوقعات اليومية";
 "wind" = "الرياح";
@@ -13,28 +14,34 @@
 "humidity" = "الرطوبة";
 "pressure" = "الضغط";
 
+// MARK: Forecast Info Item
 "am" = "ص";
 "pm" = "م";
 "km/h" = "كم/س";
 "hpa" = "م.بار";
 
+// MARK: Settings View
 "settings" = "الإعدادات";
 "general" = "عام";
 "appearance" = "المظهر";
 
+// MARK: Temperature Settings
 "temperatureDegree" = "درجة الحرارة";
 "celsius" = "مئوية";
 "fahrenheit" = "فيرنهايت";
 
+// MARK: Notifications Settings
 "notifications" = "الإشعارات";
 "dailyReminder" = "التذكير اليومي";
 "allowNotifications" = "السماح بالإشعارات";
 
+// MARK: Appearance Settings
 "darkMode" = "الوضع الداكن";
 "automatic" = "تلقائي";
 "light" = "فاتح";
 "dark" = "داكن";
 
+// MARK: Add City View
 "add" = "إضافة";
 "dismiss" = "إلغاء";
 "addNewCity" = "إضافة مدينة جديدة";

@@ -9,6 +9,8 @@ import SwiftUI
 
 extension Color {
     
+    // The function returns a color based on weather conditions
+    // Switch number cases from the API: https://openweathermap.org/weather-conditions
     static func forecastBackground(weatherId: Int?) -> Color {
         
         guard let weatherId else { return .green }
