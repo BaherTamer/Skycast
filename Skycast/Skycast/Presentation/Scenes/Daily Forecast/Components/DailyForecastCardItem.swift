@@ -14,7 +14,6 @@ struct DailyForecastCardItem: View {
     @EnvironmentObject var temperatureManager: TemperatureManager
     
     let forecast: Daily
-    
     private let forecastInfoGridColumns = Array(repeating: GridItem(.flexible()), count: 2)
     
     private var temperature: String {
@@ -37,6 +36,7 @@ struct DailyForecastCardItem: View {
         "\(forecast.pressure) \(String(localized: "hpa"))"
     }
     
+    // MARK: - Views
     var body: some View {
         VStack(spacing: 16) {
             HStack {

@@ -28,7 +28,7 @@ struct ForecastInfoItem: View {
                 Text(forecastInfo.localizedText)
                     .font(.headline)
                 
-                Text(title) // TODO: Update Model
+                Text(title)
                     .font(.subheadline)
             }
         }

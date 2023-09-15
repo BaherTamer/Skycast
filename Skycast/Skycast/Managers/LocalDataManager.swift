@@ -36,12 +36,3 @@ struct LocalDataManager {
     }
     
 }
-
-// MARK: - Helpers
-extension LocalDataManager {
-    
-    static private func encodeData(for key: String) {
-        
-    }
-    
-}

@@ -11,7 +11,7 @@ import Foundation
 @MainActor final class CitiesListViewModel: ObservableObject {
     
     @Published var cities: [City] = []
-    @Published var newCityName: String = ""
+    @Published var newCityName: String = "" // Used by textfield
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -42,6 +42,7 @@ import Foundation
             .store(in: &cancellables)
     }
     
+    // Called when user tap on city from history
     func updateCity(_ city: City) {
         guard let index = self.cities.firstIndex(where: { $0.lat == city.lat && $0.lon == city.lon }) else { return }
         self.cities.remove(at: index)

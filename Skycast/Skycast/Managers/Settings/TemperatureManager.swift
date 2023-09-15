@@ -14,6 +14,7 @@ enum DegreeType: String {
 @MainActor final class TemperatureManager: ObservableObject {
     @AppStorage("DegreeType") var degreeType: DegreeType = .celsius
     
+    // Return temperature in Celsius/Fahrenheit based on user defaults
     func getTemperature(_ temperature: Double) -> Int {
         switch degreeType {
         case .celsius:

@@ -8,6 +8,8 @@
 import Foundation
 
 extension DateFormatter {
+    
+    // Return time formate = 6 AM
     static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "h a"
@@ -17,6 +19,7 @@ extension DateFormatter {
         return formatter
     }
     
+    // Return date formate = June, 6
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM d"

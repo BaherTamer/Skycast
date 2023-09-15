@@ -6,6 +6,7 @@
   
 */
 
+// MARK: Today Forecast View
 "today" = "Today";
 "dailyForecast" = "Daily Forecast";
 "wind" = "Wind";
@@ -13,28 +14,34 @@
 "humidity" = "Humidity";
 "pressure" = "Pressure";
 
+// MARK: Forecast Info Item
 "am" = "AM";
 "pm" = "PM";
 "km/h" = "km/h";
 "hpa" = "hPa";
 
+// MARK: Settings View
 "settings" = "Settings";
 "general" = "General";
 "appearance" = "Appearance";
 
+// MARK: Temperature Settings
 "temperatureDegree" = "Temp. Degree";
 "celsius" = "Celsius";
 "fahrenheit" = "Fahrenheit";
 
+// MARK: Notifications Settings
 "notifications" = "Notifications";
 "dailyReminder" = "Daily Reminder";
 "allowNotifications" = "Allow notifications";
 
+// MARK: Appearance Settings
 "darkMode" = "Dark Mode";
 "automatic" = "Automatic";
 "light" = "Light";
 "dark" = "Dark";
 
+// MARK: Add City View
 "add" = "Add";
 "dismiss" = "Dismiss";
 "addNewCity" = "Add New City";

@@ -19,7 +19,8 @@ struct ContentView: View {
         NavigationStack {
             TodayForecast(city: $viewModel.city)
                 .navigationBarTitleDisplayMode(.inline)
-                // MARK: Alerts
+            
+                // MARK: Network Error Alert
                 .alert(viewModel.networkAlertTitle, isPresented: $viewModel.isShowingNetworkAlert, actions: {
                     networkTryAgainButton
                 }, message: {
@@ -62,6 +63,7 @@ struct ContentView: View {
         }
     }
     
+    // MARK: - Views
     private var cityNameButton: some View {
         Button {
             viewModel.isShowingCitiesView = true
