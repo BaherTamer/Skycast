@@ -20,3 +20,39 @@ Watch the demo video on [YouTube]().
 - Update application color scheme preferences (Light/Dark Mode)
 - Set a daily reminder to check today's weather
 - Application supports Arabic/English localization
+
+<br>
+
+## 🖼️ Screenshots
+
+### ☀️ Light Mode
+| **Today Forecast** | **Daily Forecast** | **Add City** | **Settings** |
+| ------------------ | ------------------ | ------------ | ------------ |
+| ![Main](Screenshots/Light/Main.png) | ![Daily](Screenshots/Light/Daily.png) | ![Cities](Screenshots/Light/Cities.png) | ![Settings](Screenshots/Light/Settings.png) |
+
+### 🌙 Dark Mode
+| **Today Forecast** | **Daily Forecast** | **Add City** | **Settings** |
+| ------------------ | ------------------ | ------------ | ------------ |
+| ![Main](Screenshots/Dark/Main.png) | ![Daily](Screenshots/Dark/Daily.png) | ![Cities](Screenshots/Dark/Cities.png) | ![Settings](Screenshots/Dark/Settings.png) |
+
+### 🌍 Localization
+| **Settings** | **Add City** | **Daily Forecast** | **Today Forecast** |
+| ------------ | ------------ | ------------------ | ------------------ |
+| ![Main](Screenshots/Arabic/Settings.png) | ![Daily](Screenshots/Arabic/Cities.png) | ![Cities](Screenshots/Arabic/Daily.png) | ![Settings](Screenshots/Arabic/Main.png) |
+
+### 🌡️ Weather Conditions
+| **Clear** | **Rain** | **Clouds** |
+| --------- | -------- | ---------- |
+| ![Main](Screenshots/Conditions/Clear.png) | ![Daily](Screenshots/Conditions/Rain.png) | ![Cities](Screenshots/Conditions/Clouds.png) |
+
+### 🔁 Landscape Mode
+| **English** | **Arabic** |
+| ----------- | ---------- |
+| ![Main](Screenshots/Landscape/English.png) | ![Daily](Screenshots/Landscape/Arabic.png) |
+
+
+
+
+
+
+
