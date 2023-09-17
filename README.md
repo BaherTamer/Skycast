@@ -8,7 +8,7 @@ Skycast is an iOS weather forecast app using **Combine** & **SwiftUI**. The proj
 <br>
 
 ## ▶️ Demo
-Watch the demo video on [YouTube]().
+Watch the demo video on [YouTube](https://youtu.be/EKfTAnE8Y2M).
 
 <br>
 
